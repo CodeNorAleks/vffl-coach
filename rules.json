@@ -1,0 +1,57 @@
+{
+  "_comment": "VFFL constitution as the engine sees it. Scoring and roster slots are read live from Sleeper; the rest is here.",
+
+  "season_structure": {
+    "regular_season_weeks": [1, 14],
+    "seeding_week": 14,
+    "playoff_weeks": [15, 16, 17],
+    "playoff_teams": 6,
+    "trade_deadline_week": 10
+  },
+
+  "waivers": {
+    "type": "FAAB",
+    "process_day": "Tuesday",
+    "bid_fractions": {
+      "must_have": 0.35,
+      "starter": 0.18,
+      "depth": 0.06,
+      "flier": 0.02
+    }
+  },
+
+  "keepers": {
+    "keep_cost_round_discount": 2,
+    "franchise_tag_keeps_same_round": true,
+    "rounds_requiring_tag": [1, 2],
+    "undrafted_tag_cost_round": 15,
+    "one_keeper_per_position": true,
+    "one_keeper_per_round_cost": true,
+    "max_keepers": 3,
+    "tagged_player_returns_to_pool_next_year_from": 2027,
+    "offseason_trade_acquisitions_must_be_kept": true
+  },
+
+  "byes_2026": {
+    "_comment": "Filled from the schedule endpoint when reachable; this table is the fallback. Add teams as they become known.",
+    "6": ["CIN", "MIN", "DET", "MIA"],
+    "7": ["WAS", "LAC", "JAX"],
+    "10": ["CHI", "PHI", "TB"],
+    "11": ["ATL", "CLE", "GB", "LAR", "NE", "SEA"],
+    "13": ["BAL", "IND", "LV", "NYJ"],
+    "14": ["ARI", "DAL"]
+  },
+
+  "playoff_slate": {
+    "good": ["LAC", "GB", "DEN", "DET", "TEN"],
+    "bad": ["DAL", "PHI", "SEA", "BAL", "HOU"]
+  },
+
+  "do_not_roster": {
+    "_comment": "Player names the engine will never recommend adding.",
+    "names": ["Jayden Higgins", "Ricky Pearsall", "Trey Benson"]
+  },
+
+  "injury_statuses_benched": ["Out", "IR", "PUP", "Sus", "NA", "Doubtful"],
+  "injury_statuses_flag": ["Questionable", "Doubtful", "Out", "IR", "PUP", "Sus"]
+}
