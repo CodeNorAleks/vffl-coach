@@ -1,0 +1,62 @@
+name: Update coach
+
+on:
+  workflow_dispatch:
+    inputs:
+      force_summary:
+        description: "Write the Claude weekly notes on this run"
+        type: boolean
+        default: false
+  schedule:
+    # All times UTC. Oslo is UTC+2 until late October, then UTC+1.
+    - cron: "0 5 * * 1"     # Mon 05:00 — after MNF; waiver reminder
+    - cron: "0 12 * * 2"    # Tue 12:00 — after FAAB runs; Claude weekly notes
+    - cron: "0 15 * * 4"    # Thu 15:00 — Thursday night game, injury reports
+    - cron: "0 18 * * 6"    # Sat 18:00 — Friday/Saturday injury designations
+    - cron: "0 8 * * 0"     # Sun 08:00 — morning check
+    - cron: "30 15 * * 0"   # Sun 15:30 — inactives before the 17:00 UTC kickoffs
+    - cron: "45 16 * * 0"   # Sun 16:45 — last call
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-coach
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt pillow
+
+      - name: Generate app icons
+        run: python scripts/make_icons.py
+
+      - name: Run the engine
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          VAPID_PUBLIC_KEY: ${{ secrets.VAPID_PUBLIC_KEY }}
+          VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
+          PUSH_SUBSCRIPTIONS: ${{ secrets.PUSH_SUBSCRIPTIONS }}
+        run: |
+          if [ "${{ inputs.force_summary }}" = "true" ]; then
+            python scripts/update.py --force-summary
+          else
+            python scripts/update.py
+          fi
+
+      - name: Publish data.json
+        run: |
+          git config user.name "vffl-coach"
+          git config user.email "coach@users.noreply.github.com"
+          git add docs/data.json docs/icon-192.png docs/icon-512.png
+          git diff --cached --quiet || git commit -m "coach update $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push
