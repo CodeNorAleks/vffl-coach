@@ -1,0 +1,26 @@
+{
+  "league_id": "1393194204259155968",
+  "draft_id": "1393194204267548672",
+  "season": 2026,
+
+  "my_team": {
+    "owner_display_name_contains": "Andric",
+    "roster_id_override": null
+  },
+
+  "projection_weeks_ahead": 3,
+  "trending_lookback_hours": 48,
+  "waiver_targets_per_position": 4,
+  "trade_proposals": 5,
+  "trade_alert_min_gain": 3,
+
+  "claude": {
+    "model": "claude-sonnet-4-6",
+    "weekly_summary_day": "Tuesday",
+    "max_tokens": 700
+  },
+
+  "push": {
+    "vapid_subject": "mailto:you@example.com"
+  }
+}
