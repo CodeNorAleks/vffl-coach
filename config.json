@@ -4,7 +4,7 @@
   "season": 2026,
 
   "my_team": {
-    "owner_display_name_contains": "Andric",
+    "owner_display_name_contains": "BosnianCougars",
     "roster_id_override": null
   },
 
@@ -21,6 +21,6 @@
   },
 
   "push": {
-    "vapid_subject": "mailto:you@example.com"
+    "vapid_subject": "mailto:aleksander@andric.no"
   }
 }
