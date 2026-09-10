@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VFFL Coach</title>
+<meta name="theme-color" content="#E4002B">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --field:#FFFFFF; --turf:#FFF1F3; --line:#FFC7CF; --chalk:#1B1B1F; --chalk-dim:#5A5A62; --mute:#8E8E96;
+  --amber:#E4002B; --red:#FF7A00; --ink:#E4002B; --ink-text:#FFFFFF; --hot:#FFD200;
+  --display:'Barlow Condensed', 'Arial Narrow', sans-serif; --body:'Barlow', system-ui, sans-serif;
+  --tab-h:64px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--field);color:var(--chalk);font-family:var(--body);font-size:16px;line-height:1.4}
+a{color:var(--amber)}
+button{font-family:inherit}
+.app{display:grid;grid-template-rows:auto 1fr auto;grid-template-areas:"h" "m" "n";min-height:100dvh}
+header{grid-area:h;background:var(--ink);color:#fff} main{grid-area:m} nav{grid-area:n}
+header{display:flex;align-items:baseline;gap:12px;padding:14px 18px 8px;padding-top:calc(14px + env(safe-area-inset-top));white-space:nowrap}
+header h1{font-family:var(--display);font-weight:700;font-size:26px;margin:0;letter-spacing:.5px}
+header .week{font-family:var(--display);font-size:22px;color:var(--hot);font-weight:600}
+header .meta{margin-left:auto;font-size:12px;color:#FFD5DB;text-align:right}
+@media (max-width:420px){ header .meta #hdrUpdated{display:none} }
+header .meta button{background:none;border:0;color:#fff;font-size:13px;cursor:pointer;padding:4px 6px}
+main{padding:0 18px 24px;max-width:760px;width:100%;margin:0 auto}
+nav{position:sticky;bottom:0;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-top:2px solid var(--amber);padding-bottom:env(safe-area-inset-bottom)}
+nav button{background:none;border:0;color:var(--mute);height:var(--tab-h);font-family:var(--display);font-size:17px;font-weight:600;cursor:pointer;position:relative}
+nav button[aria-selected="true"]{color:var(--amber)}
+nav button[aria-selected="true"]::after{content:"";position:absolute;left:25%;right:25%;top:0;height:4px;background:var(--amber)}
+nav button .dot{position:absolute;top:12px;right:calc(50% - 26px);width:8px;height:8px;border-radius:50%;background:var(--hot);border:1px solid var(--amber)}
+section[hidden]{display:none}
+h2{font-family:var(--display);font-size:24px;font-weight:600;margin:20px 0 8px}
+h2 small{font-family:var(--body);font-size:14px;color:var(--mute);font-weight:400;margin-left:10px}
+p.lead{color:var(--chalk-dim);margin:0 0 14px;max-width:60ch}
+.empty{background:var(--turf);border-left:4px solid var(--amber);padding:14px 16px;color:var(--chalk);max-width:60ch}
+.empty code{background:#fff;border:1px solid var(--line);padding:1px 6px;border-radius:3px}
+
+/* live field */
+.live{margin:6px 0 4px}
+.live .scores{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--display)}
+.live .scores .t{font-size:20px;font-weight:600}
+.live .scores .s{font-size:32px;font-weight:700;margin-left:8px}
+.live .scores .opp{color:var(--chalk-dim);text-align:right}
+.live svg{width:100%;height:auto;display:block;border-radius:6px}
+.live .cap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 12px;font-size:13px;color:var(--mute);margin-top:6px}
+.live .cap b{color:var(--amber);font-family:var(--display);font-size:16px}
+.live .pill{display:inline-block;background:var(--hot);color:var(--chalk);font-family:var(--display);font-size:13px;font-weight:600;padding:1px 8px;border-radius:10px}
+.live .pill.live{background:var(--amber);color:#fff}
+
+/* formation */
+.formation{display:flex;flex-direction:column;gap:6px;background:
+  repeating-linear-gradient(to bottom,transparent 0 44px,rgba(228,0,43,.12) 44px 45px);padding:12px 0}
+.frow{display:flex;gap:6px;justify-content:center}
+.cell{flex:1 1 0;max-width:50%;background:var(--turf);border:1px solid var(--line);padding:8px 10px 10px;border-radius:6px;min-height:78px;position:relative;overflow:hidden}
+.frow.three .cell{max-width:34%}
+@media (max-width:600px){ .frow.three .cell .name{padding-right:0;font-size:17px;overflow-wrap:normal} .frow.three .cell .pts{position:static;display:block;font-size:20px;margin-top:2px} }
+.cell .slot{font-family:var(--display);font-size:13px;color:var(--mute);letter-spacing:.5px}
+.cell .name{font-family:var(--display);font-size:19px;font-weight:600;line-height:1.05;margin:2px 0;padding-right:40px;overflow-wrap:anywhere}
+.cell .sub{font-size:12px;color:var(--chalk-dim)}
+.cell .pts{position:absolute;right:10px;top:8px;font-family:var(--display);font-size:22px;font-weight:700;color:var(--amber)}
+.cell .bar{position:absolute;left:0;bottom:0;height:4px;background:var(--amber);opacity:.85}
+.cell.change{background:var(--amber);color:#fff;border-color:var(--amber)}.cell.change a.pl{border-color:#FFD5DB}
+.cell.change .slot,.cell.change .sub{color:#FFD5DB}.cell.change .pts{color:var(--hot)}.cell.change .bar{background:var(--hot)}
+.cell.hurt .name::after{content:" ●";color:var(--red);font-size:14px;vertical-align:middle}
+.cell.bye{opacity:.55}
+.cell.empty-slot{border:2px dashed var(--line);background:transparent}
+.totals{display:flex;gap:24px;align-items:baseline;margin:4px 0 6px}
+.totals .big{font-family:var(--display);font-size:48px;font-weight:700;line-height:1;color:var(--amber)}
+.totals .vs{color:var(--chalk-dim)}
+.totals .vs b{font-family:var(--display);font-size:26px;font-weight:600;color:var(--chalk)}
+
+/* lists */
+.row{display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}
+.row .who{font-family:var(--display);font-size:20px;font-weight:600}
+.row .who span{font-family:var(--body);font-size:13px;color:var(--chalk-dim);font-weight:400;margin-left:8px}
+.row .why{font-size:13px;color:var(--chalk-dim);margin-top:2px;max-width:56ch}
+.row .num{font-family:var(--display);font-size:24px;font-weight:700;text-align:right;color:var(--amber);white-space:nowrap}
+.row .num small{display:block;font-family:var(--body);font-size:11px;color:var(--mute);font-weight:400}
+.tag{display:inline-block;font-size:12px;padding:1px 7px;border-radius:3px;background:#fff;border:1px solid var(--line);color:var(--chalk-dim);margin-right:4px}
+.tag.red{background:var(--amber);border-color:var(--amber);color:#fff}
+.tag.amber{background:var(--hot);border-color:var(--hot);color:var(--chalk)}
+.status{font-family:var(--display);font-size:16px;font-weight:600}
+.status.out,.status.ir,.status.doubtful{color:var(--amber)}
+.status.questionable{color:var(--red)}
+.bench{margin-top:14px;color:var(--chalk-dim);font-size:14px;line-height:1.7}
+.bench b{color:var(--chalk);font-weight:600}
+
+.btn{display:inline-block;background:var(--amber);color:#fff;border:0;border-radius:6px;padding:10px 16px;font-family:var(--display);font-size:18px;font-weight:600;text-decoration:none;cursor:pointer;margin:12px 8px 0 0}
+.btn.ghost{background:#fff;color:var(--amber);border:2px solid var(--amber)}
+.btn.mini{font-size:14px;padding:4px 10px;margin:6px 0 0;border-width:1px;white-space:nowrap}
+.btn:focus-visible,nav button:focus-visible,button:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
+
+.trade{background:var(--turf);border:1px solid var(--line);border-radius:6px;padding:12px 14px;margin-bottom:10px}
+.trade .hdr{display:flex;justify-content:space-between;align-items:baseline}
+.trade .hdr .who{font-family:var(--display);font-size:20px;font-weight:600}
+.trade .swap{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin:8px 0;font-size:15px}
+.trade .swap .arrow{font-family:var(--display);font-size:24px;color:var(--mute)}
+.trade .swap .lbl{font-size:12px;color:var(--mute);display:block}
+.trade .pitch{font-size:14px;color:var(--chalk-dim);margin:6px 0 0}
+
+.coach{background:var(--turf);border:1px solid var(--line);border-radius:6px;padding:14px 16px;white-space:pre-wrap;font-size:16px;line-height:1.55;max-width:66ch}
+textarea,input[type=text],input[type=password]{width:100%;background:#fff;color:var(--chalk);border:2px solid var(--line);border-radius:6px;padding:10px;font-family:var(--body);font-size:15px}
+textarea{min-height:80px}
+.small{font-size:13px;color:var(--mute)}
+a.pl{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}a.pl:hover{border-color:var(--amber)}
+.stand{width:100%;border-collapse:collapse;font-size:15px}
+.stand td{padding:6px 4px;border-bottom:1px solid var(--line)}
+.stand tr.me td{color:var(--amber);font-weight:600}
+.stand td:last-child{text-align:right;font-family:var(--display);font-size:18px}
+
+@media (min-width:900px){
+  .app{grid-template-columns:200px 1fr;grid-template-rows:auto 1fr;grid-template-areas:"h h" "n m"}
+  nav{position:static;display:flex;flex-direction:column;border:0;border-right:2px solid var(--line);background:#fff;padding:8px 0}
+  nav button{height:52px;text-align:left;padding-left:18px;font-size:19px}
+  nav button[aria-selected="true"]::after{left:0;right:auto;top:10px;bottom:10px;height:auto;width:3px}
+  nav button .dot{right:auto;left:8px;top:22px}
+  main{padding:0 32px 40px;max-width:900px;margin:0}
+}
+@media (prefers-reduced-motion:no-preference){ .cell.change{animation:pulse 1.2s ease-out 1} @keyframes pulse{from{outline-color:transparent}} }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>VFFL Coach</h1>
+    <span class="week" id="hdrWeek"></span>
+    <span class="meta"><span id="hdrUpdated"></span> <button id="btnSettings" aria-label="Settings">⚙︎ Settings</button></span>
+  </header>
+
+  <nav role="tablist">
+    <button role="tab" data-tab="lineup" aria-selected="true">Lineup</button>
+    <button role="tab" data-tab="waivers">Waivers</button>
+    <button role="tab" data-tab="injuries">Injuries<span class="dot" id="dotInj" hidden></span></button>
+    <button role="tab" data-tab="trades">Trades</button>
+    <button role="tab" data-tab="coach">Coach</button>
+  </nav>
+
+  <main>
+    <section id="tab-lineup"></section>
+    <section id="tab-waivers" hidden></section>
+    <section id="tab-injuries" hidden></section>
+    <section id="tab-trades" hidden></section>
+    <section id="tab-coach" hidden></section>
+    <section id="tab-settings" hidden></section>
+  </main>
+</div>
+
+<script>
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let D = null;
+const P = id => (D && D.players[id]) || { name: id, position: '?', team: '' };
+const plink = id => (D.links && D.links.player_page && /^\d+$/.test(id)) ? D.links.player_page.replace('{id}', id) : null;
+const nm = id => { const u = plink(id); return u ? `<a class="pl" href="${u}" target="_blank" rel="noopener">${esc(P(id).name)}</a>` : esc(P(id).name); };
+const pt = id => { const p = P(id); return `${p.position}${p.team ? ' · ' + p.team : ''}`; };
+
+// ---------- tabs ----------
+document.querySelectorAll('nav [role=tab]').forEach(b => b.addEventListener('click', () => show(b.dataset.tab)));
+$('#btnSettings').addEventListener('click', () => show('settings'));
+function show(tab) {
+  document.querySelectorAll('main section').forEach(s => s.hidden = s.id !== 'tab-' + tab);
+  document.querySelectorAll('nav [role=tab]').forEach(b => b.setAttribute('aria-selected', b.dataset.tab === tab));
+  location.hash = tab;
+}
+
+// ---------- load ----------
+async function load() {
+  try {
+    const r = await fetch('data.json?t=' + Date.now(), { cache: 'no-store' });
+    D = await r.json();
+  } catch (e) {
+    $('#tab-lineup').innerHTML = `<div class="empty">Couldn't load data.json. Run the "Update coach" workflow in GitHub once, then reload.</div>`;
+    return;
+  }
+  render();
+}
+function render() {
+  if (!D.week) {
+    $('#hdrWeek').textContent = '';
+    $('#tab-lineup').innerHTML = `<div class="empty">No data yet. In your GitHub repo, open <b>Actions → Update coach → Run workflow</b>. After that it runs itself on schedule.</div>`;
+    renderSettings();
+    return;
+  }
+  $('#hdrWeek').textContent = 'Week ' + D.week;
+  $('#hdrUpdated').textContent = 'updated ' + rel(D.generated);
+  renderLineup(); renderWaivers(); renderInjuries(); renderTrades(); renderCoach(); renderSettings();
+  const t = location.hash.replace('#', '');
+  if (t && $('#tab-' + t)) show(t);
+}
+function rel(iso) {
+  const m = Math.round((Date.now() - new Date(iso)) / 60000);
+  if (m < 60) return m + ' min ago';
+  const h = Math.round(m / 60); if (h < 36) return h + ' h ago';
+  return Math.round(h / 24) + ' d ago';
+}
+
+// ---------- "do this in Sleeper" (paste into Claude in Chrome) ----------
+const lname = () => D.league.name || 'my Sleeper league';
+function doBtn(text, label = 'Copy for Claude in Chrome', mini = false) {
+  return `<button class="btn ghost ${mini ? 'mini' : ''}" data-do="${esc(text)}">${label}</button>`;
+}
+function wireDo(root) {
+  root.querySelectorAll('[data-do]').forEach(b => b.addEventListener('click', async () => {
+    await navigator.clipboard.writeText(b.dataset.do); const t = b.textContent; b.textContent = 'Copied — paste it to Claude in Chrome'; setTimeout(() => b.textContent = t, 2500);
+  }));
+}
+
+// ---------- lineup ----------
+function renderLineup() {
+  const L = D.lineup, slots = L.optimal;
+  const maxp = Math.max(1, ...slots.map(s => s.proj));
+  const changedIn = new Set(L.changes.filter(c => c.in).map(c => c.in));
+  const rows = [['QB'], ['RB', 'RB'], ['WR', 'WR', 'FLEX'], ['TE'], ['K', 'DEF']];
+  const cellFor = slot => {
+    const i = slots.findIndex(s => s.slot === slot && !s._used);
+    if (i < 0) return '';
+    const s = slots[i]; s._used = true;
+    if (!s.player_id) return `<div class="cell empty-slot ${slot.toLowerCase()}"><div class="slot">${slot}</div><div class="name" style="color:var(--mute)">Nobody</div></div>`;
+    const p = P(s.player_id);
+    const cls = ['cell', slot.toLowerCase(), changedIn.has(s.player_id) ? 'change' : '', p.injury_status ? 'hurt' : '', p.on_bye_this_week ? 'bye' : ''].join(' ');
+    return `<div class="${cls}"><div class="slot">${slot}</div><div class="name">${nm(s.player_id)}</div>
+      <div class="sub">${pt(s.player_id)}${p.injury_status ? ' · ' + esc(p.injury_status) : ''}${p.on_bye_this_week ? ' · bye' : ''}</div>
+      <div class="pts">${s.proj}</div><div class="bar" style="width:${Math.round(100 * s.proj / maxp)}%"></div></div>`;
+  };
+  // any slots not in the standard layout (e.g. SUPER_FLEX) get their own row
+  const known = new Set(rows.flat());
+  slots.forEach(s => { if (!known.has(s.slot)) rows.push([s.slot]); });
+  const cells = rows.map(r => `<div class="frow ${r.length === 3 ? 'three' : ''}">${r.map(cellFor).join('')}</div>`).join('');
+  slots.forEach(s => delete s._used);
+  const opp = D.matchup.opponent;
+  const diff = (L.proj_total - L.current_total).toFixed(1);
+  let changes = '';
+  if (L.changes.length) {
+    const ins = L.changes.filter(c => c.in).map(c => `<b>${nm(c.in)}</b> at ${c.slot}`).join(', ');
+    const outs = L.changes.filter(c => c.out).map(c => nm(c.out)).join(', ');
+    const plain = L.changes.filter(c => c.in).map(c => `${P(c.in).name} into the ${c.slot} slot`).join(', ');
+    const plainOut = L.changes.filter(c => c.out).map(c => P(c.out).name).join(', ');
+    const instr = `In Sleeper, open ${lname()} (league ${D.league.id}) and go to my team (${D.me.team}). For Week ${D.week}, move ${plain}${plainOut ? `, and bench ${plainOut}` : ''}. Save the lineup and confirm it shows ${ins.replace(/<[^>]+>/g, '')} starting.`;
+    changes = `<div class="empty" style="margin-top:10px">Start ${ins}${outs ? ` instead of ${outs}` : ''} — +${diff} projected. Sleeper can't be changed from here: open it for the tap, or copy the instruction and paste it to Claude in Chrome to have it done for you.
+      <br><a class="btn" href="${D.links.sleeper_matchup || D.links.sleeper_team}" target="_blank" rel="noopener">Open lineup in Sleeper</a>${doBtn(instr)}</div>`;
+  } else {
+    changes = `<p class="lead" style="margin-top:10px">Your Sleeper lineup already matches this.</p>`;
+  }
+  const bench = L.bench.map(id => `<b>${nm(id)}</b> ${P(id).proj_week}`).join(' &nbsp;·&nbsp; ');
+  const cal = D.calendar.length ? `<h2>Calendar flags</h2>` + D.calendar.map(c => `<div class="row"><div><div class="who">${nm(c.player_id)}<span>${pt(c.player_id)}</span></div><div class="why">${esc(c.flag)}</div></div></div>`).join('') : '';
+  const stand = `<h2>Standings</h2><table class="stand">${D.standings.map(t => `<tr class="${t.me ? 'me' : ''}"><td>${esc(t.team)}</td><td class="small">${esc(t.owner)}</td><td>${t.record}</td><td>${Math.round(t.fpts)}</td></tr>`).join('')}</table>`;
+  $('#tab-lineup').innerHTML = `
+    <div class="live" id="liveField"></div>
+    <div class="totals"><div class="big">${L.proj_total}</div>
+      ${opp ? `<div class="vs">vs <b>${esc(opp.team)}</b> ${opp.proj} · ${esc(opp.owner)} ${opp.record}</div>` : ''}</div>
+    <p class="lead">Best lineup for Week ${D.week}, scored with the league's own settings (standard, 4-pt pass TD).</p>
+    <div class="formation">${cells}</div>
+    ${changes}
+    <div class="bench">Bench: ${bench || '—'}</div>
+    ${cal}${stand}`;
+  wireDo($('#tab-lineup'));
+  drawField();
+  startLive();
+}
+
+// ---------- live win-probability field ----------
+let LIVE = null, liveTimer = null;
+const SD_FRAC = 0.55; // weekly SD as a share of projection, by position roughly
+function gameFor(team) {
+  if (!team || !D.matchup.games) return null;
+  return D.matchup.games.find(g => g.home === team || g.away === team) || null;
+}
+function playedFrac(team, pts) {
+  const g = gameFor(team);
+  if (g) {
+    if (g.status === 'complete') return 1;
+    if (g.status === 'in_game') { const k = Date.parse(g.date); return isNaN(k) ? 0.5 : Math.min(0.97, Math.max(0.03, (Date.now() - k) / (195 * 60000))); }
+    if (g.status === 'pre_game') return 0;
+    const k = Date.parse(g.date);
+    if (!isNaN(k)) { const f = (Date.now() - k) / (195 * 60000); return f <= 0 ? 0 : f >= 1 ? 1 : f; }
+  }
+  return pts > 0 ? 0.5 : 0;   // no schedule: best guess
+}
+function sideStats(ids, livePts) {
+  let mean = 0, varc = 0, scored = 0, done = 0;
+  ids.forEach(id => {
+    const p = P(id), pts = livePts ? (livePts[id] ?? 0) : 0;
+    const f = LIVE ? playedFrac(p.team, pts) : 0;
+    const proj = p.proj_week || 0;
+    const rem = proj * (1 - f);
+    mean += pts + rem; scored += pts; done += f;
+    varc += Math.pow(SD_FRAC * proj, 2) * (1 - f);
+  });
+  return { mean, varc, scored, doneFrac: ids.length ? done / ids.length : 0 };
+}
+const Phi = z => 0.5 * (1 + erf(z / Math.SQRT2));
+function erf(x) { const t = 1 / (1 + 0.3275911 * Math.abs(x)); const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x); return x < 0 ? -y : y; }
+function drawField() {
+  const box = $('#liveField'); if (!box) return;
+  const opp = D.matchup.opponent;
+  if (!opp) { box.innerHTML = ''; return; }
+  const mine = sideStats(D.matchup.my_starters, LIVE && LIVE.me), theirs = sideStats(opp.starters, LIVE && LIVE.opp);
+  const sd = Math.sqrt(mine.varc + theirs.varc) || 1;
+  const wp = Phi((mine.mean - theirs.mean) / sd);
+  const pct = Math.round(wp * 100);
+  const isLive = !!LIVE && (mine.doneFrac > 0 || theirs.doneFrac > 0) && (mine.doneFrac < 1 || theirs.doneFrac < 1);
+  const final = !!LIVE && mine.doneFrac >= 1 && theirs.doneFrac >= 1;
+  const W = 600, H = 150, ez = 50, fx = ez, fw = W - 2 * ez, x = fx + fw * wp;
+  const yards = Array.from({ length: 9 }, (_, i) => fx + fw * (i + 1) / 10);
+  box.innerHTML = `
+    <div class="scores"><div><span class="t">${esc(D.me.team)}</span><span class="s">${mine.scored.toFixed(1)}</span></div>
+      <div class="opp"><span class="s">${theirs.scored.toFixed(1)}</span><span class="t"> ${esc(opp.team)}</span></div></div>
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Win probability ${pct} percent">
+      <rect x="0" y="0" width="${W}" height="${H}" fill="#F6F6F6"/>
+      <rect x="0" y="0" width="${ez}" height="${H}" fill="#E4002B"/>
+      <rect x="${W - ez}" y="0" width="${ez}" height="${H}" fill="#CFCFD4"/>
+      <rect x="${fx}" y="0" width="${Math.max(0, x - fx)}" height="${H}" fill="#E4002B" opacity=".82"/>
+      ${yards.map((yx, i) => `<line x1="${yx}" y1="0" x2="${yx}" y2="${H}" stroke="#fff" stroke-width="2" opacity=".9"/>
+        <text x="${yx}" y="${H - 8}" fill="#fff" font-size="17" font-weight="600" text-anchor="middle" font-family="Barlow Condensed, sans-serif" opacity=".95">${i < 4 ? (i + 1) * 10 : i === 4 ? 50 : (9 - i) * 10}</text>`).join('')}
+      ${Array.from({ length: 50 }, (_, i) => `<line x1="${fx + fw * (i + 1) / 50}" y1="0" x2="${fx + fw * (i + 1) / 50}" y2="8" stroke="#fff" stroke-width="1" opacity=".7"/>`).join('')}
+      <line x1="${x}" y1="0" x2="${x}" y2="${H}" stroke="#FFD200" stroke-width="5"/>
+      <text x="${x + (wp > 0.5 ? -10 : 10)}" y="${H / 2 + 14}" fill="${wp > 0.5 ? '#fff' : '#E4002B'}" font-size="40" font-weight="700" text-anchor="${wp > 0.5 ? 'end' : 'start'}" font-family="Barlow Condensed, sans-serif">${pct}%</text>
+      <text x="${ez / 2}" y="${H / 2 + 5}" fill="#fff" font-size="14" text-anchor="middle" font-family="Barlow Condensed, sans-serif" transform="rotate(-90 ${ez / 2} ${H / 2})">${esc(D.me.team).toUpperCase()}</text>
+      <text x="${W - ez / 2}" y="${H / 2 + 5}" fill="#fff" font-size="14" text-anchor="middle" font-family="Barlow Condensed, sans-serif" transform="rotate(90 ${W - ez / 2} ${H / 2})">${esc(opp.team).toUpperCase()}</text>
+    </svg>
+    <div class="cap"><span><span class="pill ${isLive ? 'live' : ''}">${final ? 'Final' : isLive ? 'Live' : 'Pre-game'}</span> &nbsp;win chance <b>${pct}%</b></span>
+      <span>expected ${mine.mean.toFixed(1)} – ${theirs.mean.toFixed(1)}${LIVE ? ' · ' + rel(LIVE.at) : ''}</span></div>`;
+}
+async function pollLive() {
+  const opp = D.matchup.opponent; if (!opp) return;
+  try {
+    const r = await fetch(`https://api.sleeper.app/v1/league/${D.league.id}/matchups/${D.week}`);
+    const ms = await r.json();
+    const me = ms.find(m => m.roster_id === D.me.roster_id), o = ms.find(m => m.roster_id === opp.roster_id);
+    if (me && o) {
+      LIVE = { me: me.players_points || {}, opp: o.players_points || {}, at: new Date().toISOString() };
+      // keep Sleeper's live starter lists in case you changed them since the last run
+      if (me.starters) D.matchup.my_starters = me.starters.filter(x => x && x !== '0');
+      if (o.starters) opp.starters = o.starters.filter(x => x && x !== '0');
+      drawField();
+    }
+  } catch (_) { /* offline: keep the last picture */ }
+}
+function startLive() {
+  clearInterval(liveTimer);
+  pollLive();
+  liveTimer = setInterval(() => { if (document.visibilityState === 'visible') pollLive(); }, 45000);
+}
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && D && D.week) pollLive(); });
+
+// ---------- waivers ----------
+function renderWaivers() {
+  const W = D.waivers;
+  const tierName = { must_have: 'Must have', starter: 'Starter', depth: 'Depth', flier: 'Flier' };
+  const drop0 = W.drop_candidates[0] ? P(W.drop_candidates[0].player_id).name : null;
+  const rows = W.targets.map(w => {
+    const p = P(w.player_id);
+    const instr = `In Sleeper, open ${lname()} (league ${D.league.id}), go to Players, find ${p.name} (${p.position}, ${p.team}) and place a waiver claim with a FAAB bid of ${w.bid}${drop0 ? `, dropping ${drop0}` : ''}. Submit the claim and confirm it appears under my pending waivers.`;
+    return `<div class="row"><div>
+      <div class="who">${esc(p.name)}<span>${pt(w.player_id)}</span></div>
+      <div class="why"><span class="tag ${w.tier === 'must_have' ? 'amber' : ''}">${tierName[w.tier]}</span>${esc(w.why)}</div>
+      ${doBtn(instr, 'Copy claim for Claude in Chrome', true)}</div>
+      <div class="num">${w.bid}<small>FAAB bid</small></div></div>`;
+  }).join('');
+  const drops = W.drop_candidates.map(d => `<b>${nm(d.player_id)}</b> ${d.proj_ros}${d.keeper_value ? ' (keeper value — think twice)' : ''}`).join(' &nbsp;·&nbsp; ');
+  $('#tab-waivers').innerHTML = `
+    <h2>Waiver targets <small>${D.me.faab_left} of ${D.league.faab_total} FAAB left · runs ${esc(W.process_day)}</small></h2>
+    <p class="lead">Ranked by rest-of-season value against the weakest player you'd otherwise start. Bids are a share of what you have left; go higher if it's a two-team fight.</p>
+    ${rows || '<div class="empty">Nothing on waivers beats what you have. Save the budget.</div>'}
+    <div class="bench">Drop first: ${drops || '—'}</div>
+    <a class="btn" href="${D.links.sleeper_waivers}" target="_blank" rel="noopener">Place claim in Sleeper</a>`;
+  wireDo($('#tab-waivers'));
+}
+
+// ---------- injuries ----------
+function renderInjuries() {
+  const I = D.injuries;
+  $('#dotInj').hidden = !I.some(i => i.was_starter && /out|ir|doubtful/i.test(i.status));
+  const rows = I.map(i => `<div class="row"><div>
+      <div class="who">${nm(i.player_id)}<span>${pt(i.player_id)}</span></div>
+      <div class="why">${esc(i.note || '')}${i.was_starter ? ' · in your lineup' : ' · bench'}${i.replacement ? ` · <b>start ${nm(i.replacement)}</b>` : ''}</div></div>
+      <div class="status ${i.status.toLowerCase()}">${esc(i.status)}</div></div>`).join('');
+  $('#tab-injuries').innerHTML = `
+    <h2>Injuries</h2>
+    <p class="lead">Pulled from Sleeper's injury feed. Out, IR and Doubtful are benched automatically in the lineup; Questionable stays in unless the bench player projects higher.</p>
+    ${rows || '<div class="empty">Everyone is healthy.</div>'}`;
+}
+
+// ---------- trades ----------
+function renderTrades() {
+  const T = D.trades;
+  const need = Object.entries(D.needs).filter(([p]) => !['K', 'DEF'].includes(p)).sort((a, b) => b[1] - a[1])
+    .map(([p, v]) => `<span class="tag ${v > 2 ? 'red' : ''}">${p} ${v > 0 ? '−' : '+'}${Math.abs(v)}</span>`).join('');
+  const cards = T.proposals.map(t => `<div class="trade">
+      <div class="hdr"><span class="who">${esc(t.with)}</span><span class="small">${esc(t.owner)}</span></div>
+      <div class="swap"><div><span class="lbl">You get</span>${t.get.map(nm).join(', ')}</div><div class="arrow">⇄</div><div><span class="lbl">You give</span>${t.give.map(nm).join(', ')}</div></div>
+      <div class="small">You +${t.my_gain}/wk · them +${t.their_gain}/wk ${t.flags.map(f => `<span class="tag">${esc(f)}</span>`).join('')}</div>
+      <p class="pitch">${esc(t.pitch)}</p>
+      <button class="btn ghost" data-copy="${esc(t.pitch)}">Copy pitch</button>
+      ${doBtn(`In Sleeper, open ${lname()} (league ${D.league.id}) and propose a trade to ${t.owner} (team ${t.with}): I give ${t.give.map(id => P(id).name).join(' and ')} and receive ${t.get.map(id => P(id).name).join(' and ')}. Add this message: "${t.pitch}" Send the proposal and confirm it shows as pending.`, 'Copy trade for Claude in Chrome')}</div>`).join('');
+  $('#tab-trades').innerHTML = `
+    <h2>Trade ideas <small>${T.open ? 'deadline Week ' + D.league.trade_deadline : 'deadline passed'}</small></h2>
+    <p class="lead">Where you're short or long versus a league-average starter: ${need}</p>
+    ${T.open ? (cards || '<div class="empty">No partner has a spare player at your weak spot who would take your surplus. Check again after waivers.</div>') : '<div class="empty">Trades are closed for the season.</div>'}
+    <a class="btn" href="${D.links.sleeper_trades}" target="_blank" rel="noopener">Propose in Sleeper</a>`;
+  document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', async () => {
+    await navigator.clipboard.writeText(b.dataset.copy); b.textContent = 'Copied'; setTimeout(() => b.textContent = 'Copy pitch', 1500);
+  }));
+  wireDo($('#tab-trades'));
+}
+
+// ---------- coach ----------
+function renderCoach() {
+  const S = D.summary || {};
+  const key = localStorage.getItem('anthropic_key');
+  $('#tab-coach').innerHTML = `
+    <h2>Coach notes <small>${S.week ? 'Week ' + S.week + ', written ' + rel(S.generated) : 'none yet'}</small></h2>
+    ${S.text ? `<div class="coach">${esc(S.text)}</div>` : `<div class="empty">Notes are written once a week (Tuesday, after waivers) when an <code>ANTHROPIC_API_KEY</code> secret is set in GitHub.</div>`}
+    <h2>Ask about anything on the board</h2>
+    ${key ? `<textarea id="q" placeholder="Should I bench Love in Week 14? Is the Dowdle trade worth it?"></textarea>
+      <button class="btn" id="ask">Ask</button> <span class="small">One API call per question, a fraction of a cent.</span>
+      <div id="answer" class="coach" style="margin-top:12px" hidden></div>`
+      : `<p class="small">Add an Anthropic API key under Settings to ask questions from here. It stays on this device.</p>`}`;
+  const ask = $('#ask');
+  if (ask) ask.addEventListener('click', askCoach);
+}
+async function askCoach() {
+  const q = $('#q').value.trim(); if (!q) return;
+  const out = $('#answer'); out.hidden = false; out.textContent = 'Thinking…';
+  const ctx = { week: D.week, me: D.me, lineup: D.lineup.optimal.map(s => ({ slot: s.slot, name: P(s.player_id).name, proj: s.proj })),
+    bench: D.lineup.bench.map(id => ({ name: P(id).name, pos: P(id).position, ros: P(id).proj_ros, bye: P(id).bye_week, keeper: P(id).keeper })),
+    injuries: D.injuries.map(i => ({ name: P(i.player_id).name, status: i.status })), needs: D.needs,
+    waivers: D.waivers.targets.map(w => ({ name: P(w.player_id).name, pos: P(w.player_id).position, bid: w.bid, tier: w.tier })),
+    trades: D.trades.proposals.map(t => ({ with: t.with, get: t.get.map(id => P(id).name), give: t.give.map(id => P(id).name), flags: t.flags })),
+    calendar: D.calendar.map(c => ({ name: P(c.player_id).name, flag: c.flag })),
+    league: D.league, rules: 'Standard scoring, 0 PPR, 4pt pass TD, 6pt rush/rec TD. Playoffs Weeks 15–17, Week 14 is seeding. Keepers: drafted round −2; Rd 1–2 or undrafted need the franchise tag; one keeper per position and per round cost; max 3.' };
+  try {
+    const r = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: {
+      'content-type': 'application/json', 'x-api-key': localStorage.getItem('anthropic_key'),
+      'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+      body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 600, system: 'You are a blunt, specific fantasy football coach. Answer in under 150 words of plain prose using only the players in the context.', messages: [{ role: 'user', content: `Context: ${JSON.stringify(ctx)}\n\nQuestion: ${q}` }] }) });
+    const j = await r.json();
+    out.textContent = j.content ? j.content.filter(b => b.type === 'text').map(b => b.text).join('') : (j.error?.message || 'No answer');
+  } catch (e) { out.textContent = 'Request failed: ' + e.message; }
+}
+
+// ---------- settings ----------
+function renderSettings() {
+  const key = localStorage.getItem('anthropic_key') || '';
+  const canPush = 'serviceWorker' in navigator && 'PushManager' in window;
+  $('#tab-settings').innerHTML = `
+    <h2>Notifications</h2>
+    <p class="lead">Alerts for injuries to your starters, lineup changes, Monday waiver reminders and the trade deadline. On iPhone this only works after you add the app to your Home Screen.</p>
+    ${canPush ? `<button class="btn" id="enablePush">Turn on notifications</button><div id="pushOut"></div>` : `<div class="empty">This browser can't receive push. On iPhone: Share → Add to Home Screen, then open it from there.</div>`}
+    <h2>Ask the coach</h2>
+    <p class="lead">An Anthropic API key lets you ask questions from the Coach tab. It's stored only in this browser.</p>
+    <input type="password" id="key" value="${esc(key)}" placeholder="sk-ant-…"> <button class="btn" id="saveKey">Save key</button> ${key ? '<button class="btn ghost" id="clearKey">Remove</button>' : ''}
+    <h2>Making changes in Sleeper</h2>
+    <p class="lead">Sleeper doesn't let other apps change your team, so the app can't do it directly. Each recommendation has a "Copy for Claude in Chrome" button: with the Claude extension installed on desktop, paste the text into it and it clicks through Sleeper for you — set the lineup, place the claim, send the trade. One short task each, so it barely touches your usage.</p>
+    <h2>Refresh</h2>
+    <p class="lead">Data updates on the schedule in the GitHub workflow. Pull to refresh or reload to fetch the latest file.</p>
+    <button class="btn ghost" id="reload">Reload data</button>`;
+  $('#saveKey').addEventListener('click', () => { localStorage.setItem('anthropic_key', $('#key').value.trim()); renderCoach(); renderSettings(); });
+  $('#clearKey')?.addEventListener('click', () => { localStorage.removeItem('anthropic_key'); renderCoach(); renderSettings(); });
+  $('#reload').addEventListener('click', load);
+  $('#enablePush')?.addEventListener('click', enablePush);
+}
+async function enablePush() {
+  const out = $('#pushOut');
+  if (!D || !D.vapid_public_key) { out.innerHTML = `<div class="empty" style="margin-top:10px">No VAPID key yet. Add the <code>VAPID_PUBLIC_KEY</code> and <code>VAPID_PRIVATE_KEY</code> secrets in GitHub and run the workflow once.</div>`; return; }
+  const perm = await Notification.requestPermission();
+  if (perm !== 'granted') { out.innerHTML = `<div class="empty" style="margin-top:10px">Notifications were blocked. Allow them in the browser settings and try again.</div>`; return; }
+  const reg = await navigator.serviceWorker.ready;
+  const sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64ToU8(D.vapid_public_key) });
+  const json = JSON.stringify(sub.toJSON());
+  out.innerHTML = `<div class="empty" style="margin-top:10px">This device is subscribed. Last step: copy the text below into the <code>PUSH_SUBSCRIPTIONS</code> secret in GitHub (as a JSON list — add more devices as extra items).
+    <textarea id="subJson" readonly style="margin-top:8px">[${esc(json)}]</textarea><button class="btn" id="copySub">Copy</button></div>`;
+  $('#copySub').addEventListener('click', async () => { await navigator.clipboard.writeText('[' + json + ']'); $('#copySub').textContent = 'Copied'; });
+}
+function b64ToU8(b) { const p = '='.repeat((4 - b.length % 4) % 4); const s = atob((b + p).replace(/-/g, '+').replace(/_/g, '/')); return Uint8Array.from(s, c => c.charCodeAt(0)); }
+
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+load();
+</script>
+</body>
+</html>
