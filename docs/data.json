@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-12T18:09:54.749136+00:00",
+ "generated": "2026-09-13T08:11:06.178481+00:00",
  "season": 2026,
  "week": 1,
  "league": {
@@ -60,7 +60,7 @@
    {
     "slot": "TE",
     "player_id": "5022",
-    "proj": 6.7
+    "proj": 6.5
    },
    {
     "slot": "K",
@@ -86,8 +86,8 @@
    "10235",
    "11618"
   ],
-  "proj_total": 88.7,
-  "current_total": 88.7,
+  "proj_total": 88.5,
+  "current_total": 88.5,
   "changes": [],
   "current": [
    "6770",
@@ -139,14 +139,21 @@
     "tier": "depth",
     "gain_vs_my_starter": 1.1,
     "bid": 5,
-    "why": "7.4 ROS avg vs your K floor 6.3; trending 33140 adds"
+    "why": "7.4 ROS avg vs your K floor 6.3; trending 23130 adds"
    },
    {
     "player_id": "5849",
     "tier": "depth",
     "gain_vs_my_starter": 0.4,
     "bid": 5,
-    "why": "18.1 ROS avg vs your QB floor 17.7; trending 35720 adds"
+    "why": "18.1 ROS avg vs your QB floor 17.7; trending 25168 adds"
+   },
+   {
+    "player_id": "11603",
+    "tier": "depth",
+    "gain_vs_my_starter": -0.7,
+    "bid": 5,
+    "why": "5.6 ROS avg vs your TE floor 6.3; trending 0 adds"
    },
    {
     "player_id": "3214",
@@ -160,7 +167,7 @@
     "tier": "depth",
     "gain_vs_my_starter": -1.2,
     "bid": 5,
-    "why": "5.1 ROS avg vs your TE floor 6.3; trending 91818 adds"
+    "why": "5.1 ROS avg vs your TE floor 6.3; trending 49905 adds"
    },
    {
     "player_id": "4892",
@@ -170,25 +177,18 @@
     "why": "16.4 ROS avg vs your QB floor 17.7; trending 0 adds"
    },
    {
-    "player_id": "9480",
-    "tier": "depth",
-    "gain_vs_my_starter": -1.4,
-    "bid": 5,
-    "why": "4.9 ROS avg vs your TE floor 6.3; trending 19152 adds"
-   },
-   {
     "player_id": "8111",
     "tier": "depth",
     "gain_vs_my_starter": -2.0,
     "bid": 5,
-    "why": "4.3 ROS avg vs your TE floor 6.3; trending 24426 adds"
+    "why": "4.3 ROS avg vs your TE floor 6.3; trending 18444 adds"
    },
    {
     "player_id": "12545",
     "tier": "depth",
     "gain_vs_my_starter": -2.1,
     "bid": 5,
-    "why": "15.6 ROS avg vs your QB floor 17.7; trending 26968 adds"
+    "why": "15.6 ROS avg vs your QB floor 17.7; trending 19576 adds"
    },
    {
     "player_id": "12048",
@@ -202,7 +202,7 @@
     "tier": "depth",
     "gain_vs_my_starter": -2.3,
     "bid": 5,
-    "why": "15.4 ROS avg vs your QB floor 17.7; trending 17437 adds"
+    "why": "15.4 ROS avg vs your QB floor 17.7; trending 15225 adds"
    },
    {
     "player_id": "11646",
@@ -216,42 +216,42 @@
     "tier": "depth",
     "gain_vs_my_starter": -4.2,
     "bid": 5,
-    "why": "3.9 ROS avg vs your RB floor 8.1; trending 13653 adds"
+    "why": "3.9 ROS avg vs your RB floor 8.1; trending 14499 adds"
    },
    {
     "player_id": "8134",
     "tier": "depth",
     "gain_vs_my_starter": -4.2,
     "bid": 5,
-    "why": "6.3 ROS avg vs your WR floor 10.5; trending 19233 adds"
+    "why": "6.3 ROS avg vs your WR floor 10.5; trending 10917 adds"
    },
    {
     "player_id": "4147",
     "tier": "depth",
     "gain_vs_my_starter": -4.4,
     "bid": 5,
-    "why": "3.7 ROS avg vs your RB floor 8.1; trending 22560 adds"
+    "why": "3.7 ROS avg vs your RB floor 8.1; trending 24980 adds"
    },
    {
     "player_id": "5995",
     "tier": "depth",
     "gain_vs_my_starter": -4.6,
     "bid": 5,
-    "why": "3.5 ROS avg vs your RB floor 8.1; trending 28719 adds"
+    "why": "3.5 ROS avg vs your RB floor 8.1; trending 31914 adds"
    },
    {
     "player_id": "8180",
     "tier": "depth",
     "gain_vs_my_starter": -4.8,
     "bid": 5,
-    "why": "5.7 ROS avg vs your WR floor 10.5; trending 48987 adds"
+    "why": "5.7 ROS avg vs your WR floor 10.5; trending 34920 adds"
    },
    {
     "player_id": "11834",
     "tier": "depth",
     "gain_vs_my_starter": -5.1,
     "bid": 5,
-    "why": "5.4 ROS avg vs your WR floor 10.5; trending 74788 adds"
+    "why": "5.4 ROS avg vs your WR floor 10.5; trending 53522 adds"
    }
   ],
   "drop_candidates": [
@@ -344,7 +344,7 @@
     "LAR"
    ]
   },
-  "my_proj": 88.7,
+  "my_proj": 88.5,
   "my_starters": [
    "6770",
    "13287",
@@ -542,63 +542,6 @@
   }
  ],
  "players": {
-  "12533": {
-   "player_id": "12533",
-   "name": "Jacory Croskey-Merritt",
-   "position": "RB",
-   "team": "WAS",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 7.9,
-   "proj_ros": 8.1,
-   "on_bye_this_week": false,
-   "bye_week": 7,
-   "keeper": {
-    "round": 4,
-    "tag_required": false,
-    "note": "drafted Rd 6 \u2192 keep at Rd 4"
-   },
-   "trending": 0,
-   "age": 25
-  },
-  "8161": {
-   "player_id": "8161",
-   "name": "Malik Willis",
-   "position": "QB",
-   "team": "MIA",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 15.1,
-   "proj_ros": 15.4,
-   "on_bye_this_week": false,
-   "bye_week": 6,
-   "keeper": {
-    "round": 15,
-    "tag_required": true,
-    "note": "undrafted, tag only"
-   },
-   "trending": 17437,
-   "age": 27
-  },
-  "7571": {
-   "player_id": "7571",
-   "name": "Rashod Bateman",
-   "position": "WR",
-   "team": "BAL",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 5.1,
-   "proj_ros": 5.3,
-   "on_bye_this_week": false,
-   "bye_week": 13,
-   "keeper": {
-    "round": 9,
-    "tag_required": false,
-    "note": "drafted Rd 11 \u2192 keep at Rd 9"
-   },
-   "trending": 0,
-   "age": 26
-  },
   "3214": {
    "player_id": "3214",
    "name": "Hunter Henry",
@@ -614,291 +557,6 @@
     "round": 15,
     "tag_required": true,
     "note": "undrafted, tag only"
-   },
-   "trending": 0,
-   "age": 31
-  },
-  "8180": {
-   "player_id": "8180",
-   "name": "Jalen Nailor",
-   "position": "WR",
-   "team": "LV",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 6.5,
-   "proj_ros": 5.7,
-   "on_bye_this_week": false,
-   "bye_week": 13,
-   "keeper": {
-    "round": 15,
-    "tag_required": true,
-    "note": "undrafted, tag only"
-   },
-   "trending": 48987,
-   "age": 27
-  },
-  "12048": {
-   "player_id": "12048",
-   "name": "George Holani",
-   "position": "RB",
-   "team": "SEA",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 4.3,
-   "proj_ros": 5.9,
-   "on_bye_this_week": false,
-   "bye_week": 11,
-   "keeper": {
-    "round": 15,
-    "tag_required": true,
-    "note": "undrafted, tag only"
-   },
-   "trending": 0,
-   "age": 26
-  },
-  "9484": {
-   "player_id": "9484",
-   "name": "Tucker Kraft",
-   "position": "TE",
-   "team": "GB",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 6.9,
-   "proj_ros": 8.1,
-   "on_bye_this_week": false,
-   "bye_week": 11,
-   "keeper": {
-    "round": 4,
-    "tag_required": false,
-    "note": "drafted Rd 6 \u2192 keep at Rd 4"
-   },
-   "trending": 0,
-   "age": 25
-  },
-  "13286": {
-   "player_id": "13286",
-   "name": "Jadarian Price",
-   "position": "RB",
-   "team": "SEA",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 8.7,
-   "proj_ros": 9.3,
-   "on_bye_this_week": false,
-   "bye_week": 11,
-   "keeper": {
-    "round": 2,
-    "tag_required": true,
-    "note": "Rd 2 pick, tag only"
-   },
-   "trending": 0,
-   "age": 22
-  },
-  "2747": {
-   "player_id": "2747",
-   "name": "Jason Myers",
-   "position": "K",
-   "team": "SEA",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 6.9,
-   "proj_ros": 7.0,
-   "on_bye_this_week": false,
-   "bye_week": 11,
-   "keeper": {
-    "round": 10,
-    "tag_required": false,
-    "note": "drafted Rd 12 \u2192 keep at Rd 10"
-   },
-   "trending": 0,
-   "age": 35
-  },
-  "9493": {
-   "player_id": "9493",
-   "name": "Puka Nacua",
-   "position": "WR",
-   "team": "LAR",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 13.4,
-   "proj_ros": 12.2,
-   "on_bye_this_week": false,
-   "bye_week": 11,
-   "keeper": {
-    "round": 1,
-    "tag_required": true,
-    "note": "Rd 1 pick, tag only"
-   },
-   "trending": 0,
-   "age": 25
-  },
-  "12514": {
-   "player_id": "12514",
-   "name": "Emeka Egbuka",
-   "position": "WR",
-   "team": "TB",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 9.2,
-   "proj_ros": 8.2,
-   "on_bye_this_week": false,
-   "bye_week": 10,
-   "keeper": {
-    "round": 3,
-    "tag_required": true,
-    "note": "drafted Rd 3 \u2014 discounted cost would be Rd 1, so tag needed"
-   },
-   "trending": 0,
-   "age": 23
-  },
-  "11834": {
-   "player_id": "11834",
-   "name": "Devaughn Vele",
-   "position": "WR",
-   "team": "NO",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 6.0,
-   "proj_ros": 5.4,
-   "on_bye_this_week": false,
-   "bye_week": 8,
-   "keeper": {
-    "round": 15,
-    "tag_required": true,
-    "note": "undrafted, tag only"
-   },
-   "trending": 74788,
-   "age": 28
-  },
-  "9221": {
-   "player_id": "9221",
-   "name": "Jahmyr Gibbs",
-   "position": "RB",
-   "team": "DET",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 17.4,
-   "proj_ros": 19.8,
-   "on_bye_this_week": false,
-   "bye_week": 6,
-   "keeper": {
-    "round": 1,
-    "tag_required": true,
-    "note": "Rd 1 pick, tag only"
-   },
-   "trending": 0,
-   "age": 24
-  },
-  "11786": {
-   "player_id": "11786",
-   "name": "Cam Little",
-   "position": "K",
-   "team": "JAX",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 6.5,
-   "proj_ros": 6.3,
-   "on_bye_this_week": false,
-   "bye_week": 7,
-   "keeper": {
-    "round": 11,
-    "tag_required": false,
-    "note": "drafted Rd 13 \u2192 keep at Rd 11"
-   },
-   "trending": 0,
-   "age": 23
-  },
-  "12545": {
-   "player_id": "12545",
-   "name": "Tyler Shough",
-   "position": "QB",
-   "team": "NO",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 16.6,
-   "proj_ros": 15.6,
-   "on_bye_this_week": false,
-   "bye_week": 8,
-   "keeper": {
-    "round": 15,
-    "tag_required": true,
-    "note": "undrafted, tag only"
-   },
-   "trending": 26968,
-   "age": 26
-  },
-  "4147": {
-   "player_id": "4147",
-   "name": "Samaje Perine",
-   "position": "RB",
-   "team": "CIN",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 4.0,
-   "proj_ros": 3.7,
-   "on_bye_this_week": false,
-   "bye_week": 6,
-   "keeper": {
-    "round": 15,
-    "tag_required": true,
-    "note": "undrafted, tag only"
-   },
-   "trending": 22560,
-   "age": 30
-  },
-  "6806": {
-   "player_id": "6806",
-   "name": "J.K. Dobbins",
-   "position": "RB",
-   "team": "DEN",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 8.3,
-   "proj_ros": 7.4,
-   "on_bye_this_week": false,
-   "bye_week": 10,
-   "keeper": {
-    "round": 5,
-    "tag_required": false,
-    "note": "drafted Rd 7 \u2192 keep at Rd 5"
-   },
-   "trending": 0,
-   "age": 27
-  },
-  "7543": {
-   "player_id": "7543",
-   "name": "Travis Etienne",
-   "position": "RB",
-   "team": "NO",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 11.2,
-   "proj_ros": 10.3,
-   "on_bye_this_week": false,
-   "bye_week": 8,
-   "keeper": {
-    "round": 3,
-    "tag_required": false,
-    "note": "drafted Rd 5 \u2192 keep at Rd 3"
-   },
-   "trending": 0,
-   "age": 27
-  },
-  "5022": {
-   "player_id": "5022",
-   "name": "Dallas Goedert",
-   "position": "TE",
-   "team": "PHI",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 6.7,
-   "proj_ros": 6.3,
-   "on_bye_this_week": false,
-   "bye_week": 10,
-   "keeper": {
-    "round": 7,
-    "tag_required": false,
-    "note": "drafted Rd 9 \u2192 keep at Rd 7"
    },
    "trending": 0,
    "age": 31
@@ -922,21 +580,21 @@
    "trending": 0,
    "age": 26
   },
-  "4892": {
-   "player_id": "4892",
-   "name": "Baker Mayfield",
-   "position": "QB",
-   "team": "TB",
+  "5022": {
+   "player_id": "5022",
+   "name": "Dallas Goedert",
+   "position": "TE",
+   "team": "PHI",
    "injury_status": "",
    "injury_note": "",
-   "proj_week": 18.3,
-   "proj_ros": 16.4,
+   "proj_week": 6.5,
+   "proj_ros": 6.3,
    "on_bye_this_week": false,
    "bye_week": 10,
    "keeper": {
-    "round": 15,
-    "tag_required": true,
-    "note": "undrafted, tag only"
+    "round": 7,
+    "tag_required": false,
+    "note": "drafted Rd 9 \u2192 keep at Rd 7"
    },
    "trending": 0,
    "age": 31
@@ -957,217 +615,27 @@
     "tag_required": true,
     "note": "undrafted, tag only"
    },
-   "trending": 19233,
+   "trending": 10917,
    "age": 26
   },
-  "5849": {
-   "player_id": "5849",
-   "name": "Kyler Murray",
-   "position": "QB",
-   "team": "MIN",
+  "11603": {
+   "player_id": "11603",
+   "name": "AJ Barner",
+   "position": "TE",
+   "team": "SEA",
    "injury_status": "",
    "injury_note": "",
-   "proj_week": 17.2,
-   "proj_ros": 18.1,
-   "on_bye_this_week": false,
-   "bye_week": 6,
-   "keeper": {
-    "round": 15,
-    "tag_required": true,
-    "note": "undrafted, tag only"
-   },
-   "trending": 35720,
-   "age": 29
-  },
-  "7547": {
-   "player_id": "7547",
-   "name": "Amon-Ra St. Brown",
-   "position": "WR",
-   "team": "DET",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 13.0,
-   "proj_ros": 12.4,
-   "on_bye_this_week": false,
-   "bye_week": 6,
-   "keeper": {
-    "round": 4,
-    "tag_required": true,
-    "note": "drafted Rd 4 \u2014 discounted cost would be Rd 2, so tag needed"
-   },
-   "trending": 0,
-   "age": 26
-  },
-  "11646": {
-   "player_id": "11646",
-   "name": "Jalen Coker",
-   "position": "WR",
-   "team": "CAR",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 7.7,
-   "proj_ros": 7.6,
-   "on_bye_this_week": false,
-   "bye_week": 5,
-   "keeper": {
-    "round": 13,
-    "tag_required": false,
-    "note": "drafted Rd 15 \u2192 keep at Rd 13"
-   },
-   "trending": 0,
-   "age": 24
-  },
-  "11563": {
-   "player_id": "11563",
-   "name": "Bo Nix",
-   "position": "QB",
-   "team": "DEN",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 16.1,
-   "proj_ros": 16.4,
-   "on_bye_this_week": false,
-   "bye_week": 10,
-   "keeper": {
-    "round": 11,
-    "tag_required": false,
-    "note": "drafted Rd 13 \u2192 keep at Rd 11"
-   },
-   "trending": 0,
-   "age": 26
-  },
-  "11571": {
-   "player_id": "11571",
-   "name": "Isaiah Davis",
-   "position": "RB",
-   "team": "NYJ",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 4.0,
-   "proj_ros": 3.9,
-   "on_bye_this_week": false,
-   "bye_week": 13,
-   "keeper": {
-    "round": 15,
-    "tag_required": true,
-    "note": "undrafted, tag only"
-   },
-   "trending": 13653,
-   "age": 24
-  },
-  "LAR": {
-   "player_id": "LAR",
-   "name": "LAR D/ST",
-   "position": "DEF",
-   "team": "LAR",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 4.4,
-   "proj_ros": 6.7,
+   "proj_week": 5.5,
+   "proj_ros": 5.6,
    "on_bye_this_week": false,
    "bye_week": 11,
    "keeper": {
-    "round": 6,
-    "tag_required": false,
-    "note": "drafted Rd 8 \u2192 keep at Rd 6"
-   },
-   "trending": 0,
-   "age": null
-  },
-  "11610": {
-   "player_id": "11610",
-   "name": "Malik Washington",
-   "position": "WR",
-   "team": "MIA",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 4.7,
-   "proj_ros": 4.0,
-   "on_bye_this_week": false,
-   "bye_week": 6,
-   "keeper": {
-    "round": 13,
-    "tag_required": false,
-    "note": "drafted Rd 15 \u2192 keep at Rd 13"
-   },
-   "trending": 0,
-   "age": 25
-  },
-  "8111": {
-   "player_id": "8111",
-   "name": "Cade Otton",
-   "position": "TE",
-   "team": "TB",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 5.0,
-   "proj_ros": 4.3,
-   "on_bye_this_week": false,
-   "bye_week": 10,
-   "keeper": {
     "round": 15,
     "tag_required": true,
     "note": "undrafted, tag only"
-   },
-   "trending": 24426,
-   "age": 27
-  },
-  "11620": {
-   "player_id": "11620",
-   "name": "Rome Odunze",
-   "position": "WR",
-   "team": "CHI",
-   "injury_status": "Questionable",
-   "injury_note": "Leg",
-   "proj_week": 7.4,
-   "proj_ros": 7.1,
-   "on_bye_this_week": false,
-   "bye_week": 10,
-   "keeper": {
-    "round": 4,
-    "tag_required": true,
-    "note": "drafted Rd 4 \u2014 discounted cost would be Rd 2, so tag needed"
    },
    "trending": 0,
    "age": 24
-  },
-  "6083": {
-   "player_id": "6083",
-   "name": "Matt Gay",
-   "position": "K",
-   "team": "LV",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 7.7,
-   "proj_ros": 7.4,
-   "on_bye_this_week": false,
-   "bye_week": 13,
-   "keeper": {
-    "round": 15,
-    "tag_required": true,
-    "note": "undrafted, tag only"
-   },
-   "trending": 33140,
-   "age": 32
-  },
-  "5995": {
-   "player_id": "5995",
-   "name": "Justice Hill",
-   "position": "RB",
-   "team": "BAL",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 3.7,
-   "proj_ros": 3.5,
-   "on_bye_this_week": false,
-   "bye_week": 13,
-   "keeper": {
-    "round": 15,
-    "tag_required": true,
-    "note": "undrafted, tag only"
-   },
-   "trending": 28719,
-   "age": 28
   },
   "9756": {
    "player_id": "9756",
@@ -1188,43 +656,62 @@
    "trending": 0,
    "age": 24
   },
-  "2505": {
-   "player_id": "2505",
-   "name": "Darren Waller",
-   "position": "TE",
-   "team": "CAR",
+  "11834": {
+   "player_id": "11834",
+   "name": "Devaughn Vele",
+   "position": "WR",
+   "team": "NO",
    "injury_status": "",
    "injury_note": "",
-   "proj_week": 5.4,
-   "proj_ros": 5.1,
+   "proj_week": 6.0,
+   "proj_ros": 5.4,
    "on_bye_this_week": false,
-   "bye_week": 5,
+   "bye_week": 8,
    "keeper": {
     "round": 15,
     "tag_required": true,
     "note": "undrafted, tag only"
    },
-   "trending": 91818,
-   "age": 33
+   "trending": 53522,
+   "age": 28
   },
-  "13287": {
-   "player_id": "13287",
-   "name": "Jeremiyah Love",
-   "position": "RB",
-   "team": "ARI",
-   "injury_status": "Questionable",
-   "injury_note": "Ankle",
-   "proj_week": 9.0,
-   "proj_ros": 10.7,
+  "11786": {
+   "player_id": "11786",
+   "name": "Cam Little",
+   "position": "K",
+   "team": "JAX",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 6.5,
+   "proj_ros": 6.3,
    "on_bye_this_week": false,
-   "bye_week": 14,
+   "bye_week": 7,
    "keeper": {
-    "round": 2,
-    "tag_required": true,
-    "note": "Rd 2 pick, tag only"
+    "round": 11,
+    "tag_required": false,
+    "note": "drafted Rd 13 \u2192 keep at Rd 11"
    },
    "trending": 0,
-   "age": 21
+   "age": 23
+  },
+  "2747": {
+   "player_id": "2747",
+   "name": "Jason Myers",
+   "position": "K",
+   "team": "SEA",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 6.9,
+   "proj_ros": 7.0,
+   "on_bye_this_week": false,
+   "bye_week": 11,
+   "keeper": {
+    "round": 10,
+    "tag_required": false,
+    "note": "drafted Rd 12 \u2192 keep at Rd 10"
+   },
+   "trending": 0,
+   "age": 35
   },
   "DET": {
    "player_id": "DET",
@@ -1242,7 +729,7 @@
     "tag_required": false,
     "note": "drafted Rd 14 \u2192 keep at Rd 12"
    },
-   "trending": 20151,
+   "trending": 12276,
    "age": null
   },
   "11618": {
@@ -1264,6 +751,348 @@
    "trending": 0,
    "age": 24
   },
+  "7543": {
+   "player_id": "7543",
+   "name": "Travis Etienne",
+   "position": "RB",
+   "team": "NO",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 11.2,
+   "proj_ros": 10.3,
+   "on_bye_this_week": false,
+   "bye_week": 8,
+   "keeper": {
+    "round": 3,
+    "tag_required": false,
+    "note": "drafted Rd 5 \u2192 keep at Rd 3"
+   },
+   "trending": 0,
+   "age": 27
+  },
+  "11620": {
+   "player_id": "11620",
+   "name": "Rome Odunze",
+   "position": "WR",
+   "team": "CHI",
+   "injury_status": "Questionable",
+   "injury_note": "Leg",
+   "proj_week": 7.4,
+   "proj_ros": 7.1,
+   "on_bye_this_week": false,
+   "bye_week": 10,
+   "keeper": {
+    "round": 4,
+    "tag_required": true,
+    "note": "drafted Rd 4 \u2014 discounted cost would be Rd 2, so tag needed"
+   },
+   "trending": 0,
+   "age": 24
+  },
+  "12545": {
+   "player_id": "12545",
+   "name": "Tyler Shough",
+   "position": "QB",
+   "team": "NO",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 16.8,
+   "proj_ros": 15.6,
+   "on_bye_this_week": false,
+   "bye_week": 8,
+   "keeper": {
+    "round": 15,
+    "tag_required": true,
+    "note": "undrafted, tag only"
+   },
+   "trending": 19576,
+   "age": 26
+  },
+  "8111": {
+   "player_id": "8111",
+   "name": "Cade Otton",
+   "position": "TE",
+   "team": "TB",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 5.0,
+   "proj_ros": 4.3,
+   "on_bye_this_week": false,
+   "bye_week": 10,
+   "keeper": {
+    "round": 15,
+    "tag_required": true,
+    "note": "undrafted, tag only"
+   },
+   "trending": 18444,
+   "age": 27
+  },
+  "13287": {
+   "player_id": "13287",
+   "name": "Jeremiyah Love",
+   "position": "RB",
+   "team": "ARI",
+   "injury_status": "Questionable",
+   "injury_note": "Ankle",
+   "proj_week": 9.0,
+   "proj_ros": 10.7,
+   "on_bye_this_week": false,
+   "bye_week": 14,
+   "keeper": {
+    "round": 2,
+    "tag_required": true,
+    "note": "Rd 2 pick, tag only"
+   },
+   "trending": 0,
+   "age": 21
+  },
+  "10235": {
+   "player_id": "10235",
+   "name": "Roschon Johnson",
+   "position": "RB",
+   "team": "CHI",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 0.3,
+   "proj_ros": 0.3,
+   "on_bye_this_week": false,
+   "bye_week": 10,
+   "keeper": {
+    "round": 15,
+    "tag_required": true,
+    "note": "undrafted, tag only"
+   },
+   "trending": 14800,
+   "age": 25
+  },
+  "11610": {
+   "player_id": "11610",
+   "name": "Malik Washington",
+   "position": "WR",
+   "team": "MIA",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 4.7,
+   "proj_ros": 4.0,
+   "on_bye_this_week": false,
+   "bye_week": 6,
+   "keeper": {
+    "round": 13,
+    "tag_required": false,
+    "note": "drafted Rd 15 \u2192 keep at Rd 13"
+   },
+   "trending": 10768,
+   "age": 25
+  },
+  "6083": {
+   "player_id": "6083",
+   "name": "Matt Gay",
+   "position": "K",
+   "team": "LV",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 7.7,
+   "proj_ros": 7.4,
+   "on_bye_this_week": false,
+   "bye_week": 13,
+   "keeper": {
+    "round": 15,
+    "tag_required": true,
+    "note": "undrafted, tag only"
+   },
+   "trending": 23130,
+   "age": 32
+  },
+  "8180": {
+   "player_id": "8180",
+   "name": "Jalen Nailor",
+   "position": "WR",
+   "team": "LV",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 6.5,
+   "proj_ros": 5.7,
+   "on_bye_this_week": false,
+   "bye_week": 13,
+   "keeper": {
+    "round": 15,
+    "tag_required": true,
+    "note": "undrafted, tag only"
+   },
+   "trending": 34920,
+   "age": 27
+  },
+  "11563": {
+   "player_id": "11563",
+   "name": "Bo Nix",
+   "position": "QB",
+   "team": "DEN",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 16.1,
+   "proj_ros": 16.4,
+   "on_bye_this_week": false,
+   "bye_week": 10,
+   "keeper": {
+    "round": 11,
+    "tag_required": false,
+    "note": "drafted Rd 13 \u2192 keep at Rd 11"
+   },
+   "trending": 0,
+   "age": 26
+  },
+  "13286": {
+   "player_id": "13286",
+   "name": "Jadarian Price",
+   "position": "RB",
+   "team": "SEA",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 8.7,
+   "proj_ros": 9.3,
+   "on_bye_this_week": false,
+   "bye_week": 11,
+   "keeper": {
+    "round": 2,
+    "tag_required": true,
+    "note": "Rd 2 pick, tag only"
+   },
+   "trending": 0,
+   "age": 22
+  },
+  "9484": {
+   "player_id": "9484",
+   "name": "Tucker Kraft",
+   "position": "TE",
+   "team": "GB",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 6.9,
+   "proj_ros": 8.1,
+   "on_bye_this_week": false,
+   "bye_week": 11,
+   "keeper": {
+    "round": 4,
+    "tag_required": false,
+    "note": "drafted Rd 6 \u2192 keep at Rd 4"
+   },
+   "trending": 0,
+   "age": 25
+  },
+  "6806": {
+   "player_id": "6806",
+   "name": "J.K. Dobbins",
+   "position": "RB",
+   "team": "DEN",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 8.3,
+   "proj_ros": 7.4,
+   "on_bye_this_week": false,
+   "bye_week": 10,
+   "keeper": {
+    "round": 5,
+    "tag_required": false,
+    "note": "drafted Rd 7 \u2192 keep at Rd 5"
+   },
+   "trending": 0,
+   "age": 27
+  },
+  "11646": {
+   "player_id": "11646",
+   "name": "Jalen Coker",
+   "position": "WR",
+   "team": "CAR",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 7.7,
+   "proj_ros": 7.6,
+   "on_bye_this_week": false,
+   "bye_week": 5,
+   "keeper": {
+    "round": 13,
+    "tag_required": false,
+    "note": "drafted Rd 15 \u2192 keep at Rd 13"
+   },
+   "trending": 0,
+   "age": 24
+  },
+  "4892": {
+   "player_id": "4892",
+   "name": "Baker Mayfield",
+   "position": "QB",
+   "team": "TB",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 18.3,
+   "proj_ros": 16.4,
+   "on_bye_this_week": false,
+   "bye_week": 10,
+   "keeper": {
+    "round": 15,
+    "tag_required": true,
+    "note": "undrafted, tag only"
+   },
+   "trending": 0,
+   "age": 31
+  },
+  "8161": {
+   "player_id": "8161",
+   "name": "Malik Willis",
+   "position": "QB",
+   "team": "MIA",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 15.1,
+   "proj_ros": 15.4,
+   "on_bye_this_week": false,
+   "bye_week": 6,
+   "keeper": {
+    "round": 15,
+    "tag_required": true,
+    "note": "undrafted, tag only"
+   },
+   "trending": 15225,
+   "age": 27
+  },
+  "12533": {
+   "player_id": "12533",
+   "name": "Jacory Croskey-Merritt",
+   "position": "RB",
+   "team": "WAS",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 7.9,
+   "proj_ros": 8.1,
+   "on_bye_this_week": false,
+   "bye_week": 7,
+   "keeper": {
+    "round": 4,
+    "tag_required": false,
+    "note": "drafted Rd 6 \u2192 keep at Rd 4"
+   },
+   "trending": 0,
+   "age": 25
+  },
+  "9493": {
+   "player_id": "9493",
+   "name": "Puka Nacua",
+   "position": "WR",
+   "team": "LAR",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 13.4,
+   "proj_ros": 12.2,
+   "on_bye_this_week": false,
+   "bye_week": 11,
+   "keeper": {
+    "round": 1,
+    "tag_required": true,
+    "note": "Rd 1 pick, tag only"
+   },
+   "trending": 0,
+   "age": 25
+  },
   "9754": {
    "player_id": "9754",
    "name": "Quentin Johnston",
@@ -1283,6 +1112,215 @@
    "trending": 0,
    "age": 25
   },
+  "7571": {
+   "player_id": "7571",
+   "name": "Rashod Bateman",
+   "position": "WR",
+   "team": "BAL",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 5.1,
+   "proj_ros": 5.3,
+   "on_bye_this_week": false,
+   "bye_week": 13,
+   "keeper": {
+    "round": 9,
+    "tag_required": false,
+    "note": "drafted Rd 11 \u2192 keep at Rd 9"
+   },
+   "trending": 0,
+   "age": 26
+  },
+  "12048": {
+   "player_id": "12048",
+   "name": "George Holani",
+   "position": "RB",
+   "team": "SEA",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 4.3,
+   "proj_ros": 5.9,
+   "on_bye_this_week": false,
+   "bye_week": 11,
+   "keeper": {
+    "round": 15,
+    "tag_required": true,
+    "note": "undrafted, tag only"
+   },
+   "trending": 0,
+   "age": 26
+  },
+  "12514": {
+   "player_id": "12514",
+   "name": "Emeka Egbuka",
+   "position": "WR",
+   "team": "TB",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 9.2,
+   "proj_ros": 8.2,
+   "on_bye_this_week": false,
+   "bye_week": 10,
+   "keeper": {
+    "round": 3,
+    "tag_required": true,
+    "note": "drafted Rd 3 \u2014 discounted cost would be Rd 1, so tag needed"
+   },
+   "trending": 0,
+   "age": 23
+  },
+  "11571": {
+   "player_id": "11571",
+   "name": "Isaiah Davis",
+   "position": "RB",
+   "team": "NYJ",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 4.0,
+   "proj_ros": 3.9,
+   "on_bye_this_week": false,
+   "bye_week": 13,
+   "keeper": {
+    "round": 15,
+    "tag_required": true,
+    "note": "undrafted, tag only"
+   },
+   "trending": 14499,
+   "age": 24
+  },
+  "9221": {
+   "player_id": "9221",
+   "name": "Jahmyr Gibbs",
+   "position": "RB",
+   "team": "DET",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 17.4,
+   "proj_ros": 19.8,
+   "on_bye_this_week": false,
+   "bye_week": 6,
+   "keeper": {
+    "round": 1,
+    "tag_required": true,
+    "note": "Rd 1 pick, tag only"
+   },
+   "trending": 0,
+   "age": 24
+  },
+  "5995": {
+   "player_id": "5995",
+   "name": "Justice Hill",
+   "position": "RB",
+   "team": "BAL",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 3.7,
+   "proj_ros": 3.5,
+   "on_bye_this_week": false,
+   "bye_week": 13,
+   "keeper": {
+    "round": 15,
+    "tag_required": true,
+    "note": "undrafted, tag only"
+   },
+   "trending": 31914,
+   "age": 28
+  },
+  "5849": {
+   "player_id": "5849",
+   "name": "Kyler Murray",
+   "position": "QB",
+   "team": "MIN",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 17.2,
+   "proj_ros": 18.1,
+   "on_bye_this_week": false,
+   "bye_week": 6,
+   "keeper": {
+    "round": 15,
+    "tag_required": true,
+    "note": "undrafted, tag only"
+   },
+   "trending": 25168,
+   "age": 29
+  },
+  "7547": {
+   "player_id": "7547",
+   "name": "Amon-Ra St. Brown",
+   "position": "WR",
+   "team": "DET",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 13.0,
+   "proj_ros": 12.4,
+   "on_bye_this_week": false,
+   "bye_week": 6,
+   "keeper": {
+    "round": 4,
+    "tag_required": true,
+    "note": "drafted Rd 4 \u2014 discounted cost would be Rd 2, so tag needed"
+   },
+   "trending": 0,
+   "age": 26
+  },
+  "4147": {
+   "player_id": "4147",
+   "name": "Samaje Perine",
+   "position": "RB",
+   "team": "CIN",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 4.0,
+   "proj_ros": 3.7,
+   "on_bye_this_week": false,
+   "bye_week": 6,
+   "keeper": {
+    "round": 15,
+    "tag_required": true,
+    "note": "undrafted, tag only"
+   },
+   "trending": 24980,
+   "age": 30
+  },
+  "2505": {
+   "player_id": "2505",
+   "name": "Darren Waller",
+   "position": "TE",
+   "team": "CAR",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 5.4,
+   "proj_ros": 5.1,
+   "on_bye_this_week": false,
+   "bye_week": 5,
+   "keeper": {
+    "round": 15,
+    "tag_required": true,
+    "note": "undrafted, tag only"
+   },
+   "trending": 49905,
+   "age": 34
+  },
+  "LAR": {
+   "player_id": "LAR",
+   "name": "LAR D/ST",
+   "position": "DEF",
+   "team": "LAR",
+   "injury_status": "",
+   "injury_note": "",
+   "proj_week": 4.4,
+   "proj_ros": 6.7,
+   "on_bye_this_week": false,
+   "bye_week": 11,
+   "keeper": {
+    "round": 6,
+    "tag_required": false,
+    "note": "drafted Rd 8 \u2192 keep at Rd 6"
+   },
+   "trending": 0,
+   "age": null
+  },
   "6770": {
    "player_id": "6770",
    "name": "Joe Burrow",
@@ -1301,53 +1339,9 @@
    },
    "trending": 0,
    "age": 29
-  },
-  "9480": {
-   "player_id": "9480",
-   "name": "Brenton Strange",
-   "position": "TE",
-   "team": "JAX",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 4.9,
-   "proj_ros": 4.9,
-   "on_bye_this_week": false,
-   "bye_week": 7,
-   "keeper": {
-    "round": 15,
-    "tag_required": true,
-    "note": "undrafted, tag only"
-   },
-   "trending": 19152,
-   "age": 25
-  },
-  "10235": {
-   "player_id": "10235",
-   "name": "Roschon Johnson",
-   "position": "RB",
-   "team": "CHI",
-   "injury_status": "",
-   "injury_note": "",
-   "proj_week": 0.3,
-   "proj_ros": 0.3,
-   "on_bye_this_week": false,
-   "bye_week": 10,
-   "keeper": {
-    "round": 15,
-    "tag_required": true,
-    "note": "undrafted, tag only"
-   },
-   "trending": 30776,
-   "age": 25
   }
  },
- "alerts": [
-  {
-   "type": "injury",
-   "title": "Injury update",
-   "body": "Jalen McMillan: Doubtful"
-  }
- ],
+ "alerts": [],
  "summary": {},
  "vapid_public_key": "",
  "links": {
